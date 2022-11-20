@@ -1,0 +1,12 @@
+#BuildPanel {
+    display: flex;
+
+    .item {
+        width: 64px;
+        height: 64px;
+        border: solid 5px silver;
+        margin: 10px;
+        background: rgb(231, 255, 95);
+        border-radius: 50px;
+    }
+}
