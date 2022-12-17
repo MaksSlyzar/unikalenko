@@ -56,9 +56,12 @@ class AssetsManager {
 
                     sprite.loaded = true;
                     
-                    const allLoaded = spriteNames.filter(_sprite => _sprite.loaded == true);
-                    
-                    console.log("Sprite", sprite.name, "successfully loaded.");
+                    let allLoaded = true;
+
+                    spriteNames.forEach(_sprite => {
+                        if (_sprite.loaded == false)
+                            allLoaded = false;
+                    });
 
                     if (allLoaded)
                         this.allSpriteLoaded();

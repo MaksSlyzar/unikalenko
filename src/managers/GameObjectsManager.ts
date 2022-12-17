@@ -23,7 +23,6 @@ class GameObjectsManager {
 
         loaded.onLoaded(() => {
             this.start();
-            console.log('start')
         });
     }
     

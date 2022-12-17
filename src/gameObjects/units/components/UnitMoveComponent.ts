@@ -34,21 +34,21 @@ class UnitMoveComponent {
         };
 
         //Collision
-        GameObjectsManager.resourceObjects.map(obj => {
-            const distanceOtherTarget = { x: obj.posX, y: obj.posY, radius: obj.width / 2 };
-            if (CheckDistanceArc({ ...newPosition, radius: this.unit.width / 2 }, distanceOtherTarget)) {
-                const posX = Math.abs(obj.posX - this.unit.posX);
+        // GameObjectsManager.resourceObjects.map(obj => {
+        //     const distanceOtherTarget = { x: obj.posX, y: obj.posY, radius: obj.width / 2 };
+        //     if (CheckDistanceArc({ ...newPosition, radius: this.unit.width / 2 }, distanceOtherTarget)) {
+        //         const posX = Math.abs(obj.posX - this.unit.posX);
                 
-                // if (posX > distanceOtherTarget.radius)
-                if (Math.cos(rad) > Math.sin(rad))
-                    newPosition.x += 1;
-                else 
-                    newPosition.y += 1;
-                // else
-                //     newPosition.x -= 1;
-                console.log(posX);
-            }
-        });
+        //         // if (posX > distanceOtherTarget.radius)
+        //         if (Math.cos(rad) > Math.sin(rad))
+        //             newPosition.x += 1;
+        //         else 
+        //             newPosition.y += 1;
+        //         // else
+        //         //     newPosition.x -= 1;
+        //         console.log(posX);
+        //     }
+        // });
 
         this.unit.posX = newPosition.x;
         this.unit.posY = newPosition.y;
@@ -57,6 +57,9 @@ class UnitMoveComponent {
         const distanceOtherTarget = { x: this.toObject.posX, y: this.toObject.posY, radius: this.toObject.width / 2 };
         if (CheckDistanceArc({ ...newPosition, radius: this.unit.width / 2 }, distanceOtherTarget)) {
             this.on = false;
+
+            if (this.onEnterObjectCb)
+                this.onEnterObjectCb();
         }
     }
 
@@ -84,11 +87,14 @@ class UnitMoveComponent {
     //     this.moveTarget = target;
     // }
 
-    moveToObject (object: BuildObject|GameObject|ResourceObject, onEnterObjectCb: ()=>void, onDontEnterObject: ()=>void) {
+    moveToObject (object: BuildObject|GameObject|ResourceObject, onEnterObjectCb?: ()=>void, onDontEnterObject?: ()=>void) {
         this.on = true;
         this.toObject = object;
-        this.onDontEnterObjectCb = onDontEnterObject;
-        this.onEnterObjectCb = onEnterObjectCb;
+
+        if (onEnterObjectCb)
+            this.onDontEnterObjectCb = onDontEnterObject;
+        if (onDontEnterObject)
+            this.onEnterObjectCb = onEnterObjectCb;
     }
 };
 

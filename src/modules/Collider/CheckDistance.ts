@@ -12,4 +12,3 @@ export function CheckDistanceArc (selfObject: NewObjectArc, otherObject: NewObje
     // console.log(dx, dy, distance)
     return distance < selfObject.radius + otherObject.radius;
 }
-

@@ -12,7 +12,7 @@ class BuildPanel {
     }
 
     init () {
-        console.log(this.addBuilds());
+        this.addBuilds();
     }
 
     addBuilds () {
@@ -26,11 +26,17 @@ class BuildPanel {
                 description: "",
                 datasetName: "houseBuild"
             },
+            // {
+            //     imgSrc: require("../../assets/minebuild.png").default,
+            //     name: "Mine build",
+            //     description: "",
+            //     datasetName: "mineBuild"
+            // },
             {
                 imgSrc: require("../../assets/minebuild.png").default,
-                name: "Mine build",
+                name: "Store build",
                 description: "",
-                datasetName: "mineBuild"
+                datasetName: "storeBuild"
             }
         ];
 
@@ -54,7 +60,8 @@ class BuildPanel {
             
             const item = target.parentElement as HTMLElement;
 
-            console.log(item.dataset["build"]);
+            if (item.dataset["build"] == undefined)
+                return;
 
             this.buildController.buildEvent(item.dataset["build"]);
         }

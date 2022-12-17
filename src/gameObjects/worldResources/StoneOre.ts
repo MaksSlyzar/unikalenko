@@ -22,6 +22,19 @@ class StoneOre extends ResourceObject {
 
     constructor () {
         super();
+        CanvasManager.events.setLeftOnClick((event) => this.onLeftClick(event));
+    }
+
+    onLeftClick (event: Event) {
+        const vec = GameObjectsManager.camera.doPosition(this.posX, this.posY, this.width, this.height);
+        
+        const mouse = CanvasManager.mouse;
+
+        if (mouse.x > vec.x && mouse.x < mouse.x + vec.width) {
+            if (mouse.y > vec.y && mouse.y < vec.y + vec.height) {
+                
+            }
+        }
     }
 
     draw () {
